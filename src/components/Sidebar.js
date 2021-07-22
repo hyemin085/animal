@@ -8,8 +8,8 @@ const Sidebar = () => {
     <>
       <Grid padding="0 10vw 0 0">
         <Container>
-          <PhotoBox>
-            <img src={on} alt="" style={{ width: "10vw", height: "15vh" }} />
+          <PhotoBox style={{ height: "9vw" }}>
+            <img src={on} alt="" style={{ width: "65%", height: "65%" }} />
           </PhotoBox>
           <MenuBox>온 세상</MenuBox>
           <MenuBox>온 이야기</MenuBox>
@@ -27,9 +27,9 @@ const Sidebar = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 30vh;
-  border-left: 1px solid #c4c4c4;
-  border-right: 1px solid #c4c4c4;
+  height: auto;
+  border-left: 1px solid #efeeee;
+  border-right: 1px solid #efeeee;
 `;
 
 const PhotoBox = styled.div`
@@ -43,13 +43,19 @@ const PhotoBox = styled.div`
 const MenuBox = styled.div`
   width: 100%;
   height: 3.5em;
-  background-color: #f7f7f7;
+  background-color: #f8f7f7;
   display: flex;
   align-items: center;
   padding: 1em;
   font-weight: bold;
-  font-size: 17px;
-  border-top: 1px solid #c4c4c4;
+  font-size: 1.1em;
+  border-top: 1px solid #efeeee;
+  border-left: 1px solid #efeeee;
+  border-right: 2px solid #efeeee;
+  ​ &:hover {
+    border-left: 3px solid #67bfb2;
+    color: #67bfb2;
+  }
 `;
 
 export default Sidebar;

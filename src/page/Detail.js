@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { Grid } from "../elements/index";
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 import commentList from "../components/CommentList";
 
 import styled from "styled-components";
@@ -16,9 +17,6 @@ const Detail = (props) => {
   const post = useSelector((state) => state.post.post);
   const name = useSelector((state) => state.post.name);
   const post_id = props.history.location.pathname.split("/detail/")[1];
-
-  const is_login = useSelector((state) => state.user.is_login);
-  console.log(is_login);
 
   useEffect(() => {
     dispatch(postActions.detailPostDB(post_id));
@@ -40,134 +38,291 @@ const Detail = (props) => {
   const is_session = sessionStorage.getItem("token") ? true : false;
   console.log(is_session);
 
-  return (
-    <>
-      <Header />
-      <Grid margin="5vh 25vw 0 10vw">
-        <div
-          style={{
-            borderTop: "3px solid #699B97",
-            width: "29px",
-            marginBottom: "15px",
-          }}
-        ></div>
-        <TitleBox>
-          <Title>입양하기</Title>
-          <ApplyButton>♥ 입양 · 임시보호 신청</ApplyButton>
-        </TitleBox>
-
-        <h3>{post.title}</h3>
-        <div>{name}</div>
-        <Line />
-        <ContentBox>
-          <PhotoBox style={{ backgroundImage: `url(${post.animalPhoto})` }} />
-          <DescBox>
-            <p>이름: {post.animalName}</p>
-            <p>종: {post.animalSpecies}</p>
-            <p>종류: {post.animalBreed}</p>
-            <p>성별: {post.animalGender}</p>
-            <p>나이: {post.animalAge}</p>
-          </DescBox>
-          <StoryBox>{post.animalStory}</StoryBox>
-          <ButtonBox>
-            <ApplyButton>♥ 입양 · 임시보호 신청</ApplyButton>
-            <ApplyButton
-              onClick={() => {
-                props.history.push(`/edit/${post_id}`);
+  if (is_session) {
+    return (
+      <>
+        <Header />
+        <Container>
+          <Grid padding="5vh 3vw 5vh 10vw">
+            <div
+              style={{
+                borderTop: "3px solid #699B97",
+                width: "29px",
+                marginBottom: "15px",
               }}
-            >
-              게시글 수정
-            </ApplyButton>
-            <ApplyButton
-              style={{ backgroundColor: "#E97879" }}
-              onClick={deletePost}
-            >
-              게시글 삭제
-            </ApplyButton>
-          </ButtonBox>
-        </ContentBox>
+            ></div>
+            <TitleBox>
+              <Title>입양하기</Title>
+              <ApplyButton>♥ 입양 · 임시보호 신청</ApplyButton>
+            </TitleBox>
 
-        <Line />
-        <IconBox>
-          <IconEachBox>
-            <ThumbUpOutlinedIcon onClick={likePost} />
-          </IconEachBox>
-          <IconEachBox>
-            <FacebookIcon color="primary" />
-          </IconEachBox>
-          <IconEachBox>
-            <TwitterIcon color="primary" />
-          </IconEachBox>
-        </IconBox>
+            <h3>{post.title}</h3>
+            <div>{name}</div>
+            <Line />
+            <ContentBox>
+              <PhotoBox
+                style={{ backgroundImage: `url(${post.animalPhoto})` }}
+              />
+              <DescBox>
+                <p>이름: {post.animalName}</p>
+                <p>종: {post.animalSpecies}</p>
+                <p>종류: {post.animalBreed}</p>
+                <p>성별: {post.animalGender}</p>
+                <p>나이: {post.animalAge}</p>
+              </DescBox>
+              <StoryBox>{post.animalStory}</StoryBox>
+              <ButtonBox>
+                <ApplyButton>♥ 입양 · 임시보호 신청</ApplyButton>
+                <ApplyButton
+                  onClick={() => {
+                    props.history.push(`/edit/${post_id}`);
+                  }}
+                >
+                  게시글 수정
+                </ApplyButton>
+                <ApplyButton
+                  style={{ backgroundColor: "#E97879" }}
+                  onClick={deletePost}
+                >
+                  게시글 삭제
+                </ApplyButton>
+              </ButtonBox>
+            </ContentBox>
 
-        <Line />
-        <TitleBox>
-          <MoveEachBox>&lt; 이전글</MoveEachBox>
-          <MoveEachBox
-            onClick={() => {
-              props.history.push("/");
-            }}
-          >
-            목록으로
-          </MoveEachBox>
-          <MoveEachBox>다음글 &gt;</MoveEachBox>
-        </TitleBox>
+            <Line />
+            <IconBox>
+              <IconEachBox>
+                <ThumbUpOutlinedIcon onClick={likePost} />
+              </IconEachBox>
+              <IconEachBox>
+                <FacebookIcon color="primary" />
+              </IconEachBox>
+              <IconEachBox>
+                <TwitterIcon color="primary" />
+              </IconEachBox>
+            </IconBox>
 
-        <Line />
+            <Line />
+            <TitleBox>
+              <MoveEachBox>&lt; 이전글</MoveEachBox>
+              <MoveEachBox
+                onClick={() => {
+                  props.history.push("/");
+                }}
+              >
+                목록으로
+              </MoveEachBox>
+              <MoveEachBox>다음글 &gt;</MoveEachBox>
+            </TitleBox>
 
-        <div>댓글 달기</div>
-        <textarea
-          placeholder="내용"
-          style={{
-            width: "100%",
-            height: "7em",
-            margin: "1em 0",
-            padding: "1em",
-            border: "1px solid #c4c4c4",
-          }}
-        />
-        <div style={{ width: "100%", height: "4vh" }}>
-          <button
-            style={{
-              width: "3.5em",
-              height: "2em",
-              backgroundColor: "#66BEB2",
-              color: "white",
-              borderStyle: "none",
-              float: "right",
-              cursor: "pointer",
-            }}
-          >
-            등록
-          </button>
-        </div>
+            <Line />
 
-        <Line />
-        <div>댓글</div>
+            <div>댓글 달기</div>
+            <textarea
+              placeholder="내용"
+              style={{
+                width: "100%",
+                height: "7em",
+                margin: "1em 0",
+                padding: "1em",
+                border: "1px solid #c4c4c4",
+              }}
+            />
+            <div style={{ width: "100%", height: "4vh" }}>
+              <button
+                style={{
+                  width: "3.5em",
+                  height: "2em",
+                  backgroundColor: "#66BEB2",
+                  color: "white",
+                  borderStyle: "none",
+                  float: "right",
+                  cursor: "pointer",
+                }}
+              >
+                등록
+              </button>
+            </div>
 
-        <Line />
-        <CommentBox>
-          <div style={{ fontWeight: "bold" }}>작성자</div>
-          <button
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              cursor: "pointer",
-            }}
-          >
-            삭제
-          </button>
-        </CommentBox>
+            <Line />
+            <div>댓글</div>
 
-        <div>
-          <commentList />
-        </div>
-        <Line />
-        <Line />
-      </Grid>
-    </>
-  );
+            <Line />
+            <CommentBox>
+              <div style={{ fontWeight: "bold" }}>작성자</div>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                삭제
+              </button>
+            </CommentBox>
+
+            <div>
+              <commentList />
+            </div>
+            <Line />
+            <Line />
+          </Grid>
+
+          <Grid>
+            <Sidebar />
+          </Grid>
+        </Container>
+      </>
+    );
+  } else if (!is_session) {
+    return (
+      <>
+        <Header />
+        <Container>
+          <Grid padding="5vh 3vw 5vh 10vw">
+            <div
+              style={{
+                borderTop: "3px solid #699B97",
+                width: "29px",
+                marginBottom: "15px",
+              }}
+            ></div>
+            <TitleBox>
+              <Title>입양하기</Title>
+              <ApplyButton>♥ 입양 · 임시보호 신청</ApplyButton>
+            </TitleBox>
+
+            <h3>{post.title}</h3>
+            <div>{name}</div>
+            <Line />
+            <ContentBox>
+              <PhotoBox
+                style={{ backgroundImage: `url(${post.animalPhoto})` }}
+              />
+              <DescBox>
+                <p>이름: {post.animalName}</p>
+                <p>종: {post.animalSpecies}</p>
+                <p>종류: {post.animalBreed}</p>
+                <p>성별: {post.animalGender}</p>
+                <p>나이: {post.animalAge}</p>
+              </DescBox>
+              <StoryBox>{post.animalStory}</StoryBox>
+              <ButtonBox>
+                <ApplyButton>♥ 입양 · 임시보호 신청</ApplyButton>
+                <ApplyButton
+                  onClick={() => {
+                    window.alert("로그인 후 이용 가능합니다");
+                    props.history.push(`/login`);
+                  }}
+                >
+                  게시글 수정
+                </ApplyButton>
+                <ApplyButton
+                  style={{ backgroundColor: "#E97879" }}
+                  onClick={() => {
+                    window.alert("로그인 후 이용 가능합니다");
+                    props.history.push(`/login`);
+                  }}
+                >
+                  게시글 삭제
+                </ApplyButton>
+              </ButtonBox>
+            </ContentBox>
+
+            <Line />
+            <IconBox>
+              <IconEachBox>
+                <ThumbUpOutlinedIcon onClick={likePost} />
+              </IconEachBox>
+              <IconEachBox>
+                <FacebookIcon color="primary" />
+              </IconEachBox>
+              <IconEachBox>
+                <TwitterIcon color="primary" />
+              </IconEachBox>
+            </IconBox>
+
+            <Line />
+            <TitleBox>
+              <MoveEachBox>&lt; 이전글</MoveEachBox>
+              <MoveEachBox
+                onClick={() => {
+                  props.history.push("/");
+                }}
+              >
+                목록으로
+              </MoveEachBox>
+              <MoveEachBox>다음글 &gt;</MoveEachBox>
+            </TitleBox>
+
+            <Line />
+
+            <div>댓글 달기</div>
+            <textarea
+              placeholder="내용"
+              style={{
+                width: "100%",
+                height: "7em",
+                margin: "1em 0",
+                padding: "1em",
+                border: "1px solid #c4c4c4",
+              }}
+            />
+            <div style={{ width: "100%", height: "4vh" }}>
+              <button
+                style={{
+                  width: "3.5em",
+                  height: "2em",
+                  backgroundColor: "#66BEB2",
+                  color: "white",
+                  borderStyle: "none",
+                  float: "right",
+                  cursor: "pointer",
+                }}
+              >
+                등록
+              </button>
+            </div>
+
+            <Line />
+            <div>댓글</div>
+
+            <Line />
+            <CommentBox>
+              <div style={{ fontWeight: "bold" }}>작성자</div>
+              <button
+                style={{
+                  backgroundColor: "transparent",
+                  border: "none",
+                  cursor: "pointer",
+                }}
+              >
+                삭제
+              </button>
+            </CommentBox>
+
+            <div>
+              <commentList />
+            </div>
+            <Line />
+            <Line />
+          </Grid>
+
+          <Grid>
+            <Sidebar />
+          </Grid>
+        </Container>
+      </>
+    );
+  }
 };
+
+const Container = styled.div`
+  width: 100vw;
+  height: auto;
+  display: grid;
+  grid-template-columns: 75vw 25vw;
+`;
 
 const TitleBox = styled.div`
   display: flex;
@@ -182,7 +337,7 @@ const Title = styled.h1`
 const ApplyButton = styled.button`
   height: 6vh;
   padding: 0 1.5vw;
-  margin: 0 3vw;
+  margin: 0 1.5vw 0 1.5vw;
   background-color: #66beb2;
   color: white;
   font-size: 15px;
@@ -213,13 +368,13 @@ const PhotoBox = styled.div`
 `;
 
 const DescBox = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   margin-top: 4vh;
 `;
 
 const StoryBox = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 2vh auto;
 `;
 
@@ -230,10 +385,10 @@ const ButtonBox = styled.div`
 `;
 
 const IconBox = styled.div`
-  width: 100%;
+  width: 80%;
   height: 6vh;
   display: grid;
-  grid-template-columns: 56vw 5vw 4vw;
+  grid-template-columns: 53vw 6vw 6vw;
 `;
 
 const IconEachBox = styled.div`

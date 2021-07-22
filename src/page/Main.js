@@ -8,6 +8,7 @@ import { Pagination } from "semantic-ui-react";
 import Header from "../components/Header";
 import Card from "../components/Card";
 import Sidebar from "../components/Sidebar";
+import Carousel from "../components/Carousel";
 import notice from "../notice.png";
 
 import { useDispatch } from "react-redux";
@@ -60,11 +61,12 @@ const Main = (props) => {
               ></iframe>
             </YoutubeBox>
             <PhotoBox>
-              <img
+              {/* <img
                 src={notice}
                 alt="notice"
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              />
+              /> */}
+              <Carousel />
             </PhotoBox>
           </NoticeBox>
 

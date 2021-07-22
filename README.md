@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# 동물자유연대
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+동물자유연대의 유기동물 입양하기 페이지입니다. 로그인/회원가입, 포스팅, 수정·삭제, 좋아요 기능과 귀여운 동물 친구들을 함께 만나보세요!
 
 ## Available Scripts
 

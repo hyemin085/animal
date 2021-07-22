@@ -3,7 +3,6 @@ import { Grid } from "../elements/index";
 
 import styled from "styled-components";
 import "semantic-ui-css/semantic.min.css";
-import { Pagination } from "semantic-ui-react";
 
 import Header from "../components/Header";
 import Card from "../components/Card";
@@ -20,18 +19,6 @@ const Main = (props) => {
   React.useEffect(() => {
     dispatch(postActions.setPostDB());
   }, []);
-
-  const PaginationExampleCompact = () => (
-    <Pagination
-      boundaryRange={0}
-      defaultActivePage={1}
-      ellipsisItem={null}
-      firstItem={null}
-      lastItem={null}
-      siblingRange={5}
-      totalPages={5}
-    />
-  );
 
   return (
     <>
@@ -61,11 +48,6 @@ const Main = (props) => {
               ></iframe>
             </YoutubeBox>
             <PhotoBox>
-              {/* <img
-                src={notice}
-                alt="notice"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
-              /> */}
               <Carousel />
             </PhotoBox>
           </NoticeBox>
@@ -73,10 +55,6 @@ const Main = (props) => {
           <CardBox>
             <Card />
           </CardBox>
-
-          <PaginationContainer>
-            <PaginationExampleCompact />
-          </PaginationContainer>
         </Grid>
 
         <Grid>
@@ -120,15 +98,6 @@ const CardBox = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 4vh;
   margin-top: 6vh;
-`;
-
-const PaginationContainer = styled.div`
-  width: 100%;
-  height: 10em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: auto;
 `;
 
 export default Main;

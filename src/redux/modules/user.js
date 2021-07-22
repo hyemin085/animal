@@ -93,9 +93,9 @@ const signupDB = (nickname, password, name) => {
       },
       data: {
         nickname: nickname,
+        name: name,
         password: password,
         passwordConfirm: password,
-        name: name,
       },
     })
       .then((res) => {
@@ -105,7 +105,6 @@ const signupDB = (nickname, password, name) => {
       })
       .catch((error) => {
         console.log(error);
-        console.dir(error);
         window.alert("회원가입 실패!");
       });
   };

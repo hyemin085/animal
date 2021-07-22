@@ -32,58 +32,66 @@ const Login = () => {
     <React.Fragment>
       <Header />
       <Grid padding="2em">
-        <Container>
-          <Title>
-            <h2
-              style={{
-                textAlign: "left",
-                margin: "0px 0px 0px 0px",
-                padding: "30px",
-              }}
-            >
-              로그인
-            </h2>
-            <p style={{ marginLeft: "34px", fontSize: "1.2em" }}>
-              "모든 생명은 보호받고 존중받을 권리가 있습니다"
-              <br />
-              동물자유연대는 사람과 동물이 생태적,윤리적 조화를 이루며 살아
-              <br />
-              가는 세상을 만들기 위해 다방면에서 활동을 펼쳐가고 있습니다.
-            </p>
-          </Title>
-        </Container>
-        <LoginBox>
-          <Line />
-          <InputBox>
-            <Input
-              placeholder="아이디를 입력해주세요"
-              type="text"
-              value={nickname}
-              _onChange={_onNickname}
-            />
-
-            <Input
-              placeholder="비밀번호를 입력해주세요"
-              type="password"
-              value={password}
-              _onChange={_onPassword}
-            />
-            {/*<Input*/}
-            {/*    label =""*/}
-            {/*    placeholder="생일을 입력해주세요"/>*/}
-          </InputBox>
-          <Grid padding="20px 0px">
-            <div style={{ margin: "2em 0vh 0 29em", display: "block" }}>
-              <Button _onClick={CheckInput} text="로그인" />
-              <Button
-                text="회원가입"
-                _onClick={() => {
-                  history.push("/signup");
+        <div style={{ width: "60%", margin: "auto auto auto 10em" }}>
+          <Container>
+            <Title>
+              <h2
+                style={{
+                  fontSize: "2em",
+                  textAlign: "left",
+                  margin: "0px 0px 0px 0px",
+                  padding: "30px",
                 }}
+              >
+                로그인
+              </h2>
+              <p
+                style={{
+                  marginLeft: "34px",
+                  fontSize: "1.3em",
+                  overflow: "hidden",
+                }}
+              >
+                "모든 생명은 보호받고 존중받을 권리가 있습니다"
+                <br />
+                동물자유연대는 사람과 동물이 생태적,윤리적 조화를 이루며 살아
+                <br />
+                가는 세상을 만들기 위해 다방면에서 활동을 펼쳐가고 있습니다.
+              </p>
+            </Title>
+          </Container>
+          <Line />
+          <LoginBox>
+            <InputBox>
+              <Input
+                placeholder="아이디를 입력해주세요"
+                type="text"
+                value={nickname}
+                _onChange={_onNickname}
               />
-            </div>
-          </Grid>
-        </LoginBox>
+
+              <Input
+                placeholder="비밀번호를 입력해주세요"
+                type="password"
+                value={password}
+                _onChange={_onPassword}
+              />
+              {/*<Input*/}
+              {/*    label =""*/}
+              {/*    placeholder="생일을 입력해주세요"/>*/}
+              <br />
+              <Grid padding="20px 0px">
+                <Button _onClick={CheckInput} text="로그인" />
+                <Button
+                  text="회원가입"
+                  _onClick={() => {
+                    history.push("/signup");
+                  }}
+                />
+              </Grid>
+            </InputBox>
+          </LoginBox>
+        </div>
       </Grid>
     </React.Fragment>
   );
@@ -96,8 +104,8 @@ const Main = styled.div`
 `;
 
 const Container = styled.div`
-  height: 15vw;
-  width: 55.5em;
+  width: var(--size);
+  height: 15em;
   margin: auto;
   background-color: #67bfb2;
   color: white;
@@ -105,26 +113,28 @@ const Container = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 1em;
+  font-size: 1rem;
   color: #ffffff;
   text-align: left;
 `;
 
 const LoginBox = styled.div`
-  width: 55vw;
-  height: 200vh;
-  border: 1px solid white;
-  margin: auto;
+  width: var(--size);
+  height: var(--size);
+  //border: 1px solid black;
+  margin: 3vw auto;
 `;
 
 const InputBox = styled.div`
   text-align: center;
+  width: 100%;
 `;
 
 const Line = styled.div`
-  margin-top: 3vw;
-  width: 55vw;
-  height: 5px;
+  width: var(--size);
+  height: 2px;
+  margin: 3vw auto;
   background-color: #67bfb2;
-  margin-bottom: 3vw;
+  color: white;
+  overflow: hidden;
 `;

@@ -25,9 +25,11 @@ Button.defaultProps = {
 };
 
 const BasicButton = styled.button`
-  width: 20%;
+  width: 150px;
+  min-width: 100px;
   height: 50px;
-  border-radius: 20px;
+  border-radius: 5px;
+  margin-left: 20px;
   background-color: #67bfb2;
   color: #ffffff;
   padding: ${(props) => props.padding};

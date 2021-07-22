@@ -16,7 +16,6 @@ const Upload = (props) => {
 
   return (
     <React.Fragment>
-      <Button onClick={selectFile} />
       <input type="file" ref={fileInput} onChange={selectFile} />
     </React.Fragment>
   );

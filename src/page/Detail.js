@@ -26,7 +26,6 @@ const Detail = (props) => {
   const deletePost = () => {
     dispatch(postActions.deletePostDB(post_id));
     props.history.push("/");
-    window.location.reload();
   };
 
   const likePost = (like) => {

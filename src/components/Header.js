@@ -12,66 +12,68 @@ const Header = (props) => {
   const is_session = sessionStorage.getItem("token") ? true : false;
   console.log(is_session);
 
-  // if (is_session) {
-  //   return (
-  //     <React.Fragment>
-  //       <Grid is_flex padding="4px 16px">
-  //         <Grid>
-  //           <Text margin="0px" size="24px" bold>
-  //             <BigMenu>
-  //               <Menu style={{ marginLeft: "-30px", border: "none" }}>
-  //                 <img
-  //                   src={logo}
-  //                   alt="Logo"
-  //                   style={{
-  //                     margin: "-20px",
-  //                     width: "120%",
-  //                     height: "120%",
-  //                   }}
-  //                   onClick={"/"}
-  //                 />
-  //               </Menu>
-  //               {/*<a href="#about">*/}
-  //               <Menu>소개</Menu>
-  //               <Menu>활동</Menu>
-  //               <Menu>참여</Menu>
-  //               <Menu>자료</Menu>
-  //               <Menu>후원</Menu>
-  //               <Menu>온센터</Menu>
-  //               <Menu style={{ border: "none" }}>
-  //                 <OnButton
-  //                   onClick={() => {
-  //                     history.push("/write");
-  //                   }}
-  //                 >
-  //                   포스팅하기
-  //                 </OnButton>
-  //                 <OnButton
-  //                   onClick={() => {
-  //                     dispatch(useActions.logOutDB());
-  //                   }}
-  //                   style={{ marginTop: "-20px" }}
-  //                 >
-  //                   로그아웃
-  //                 </OnButton>
-  //               </Menu>
-  //             </BigMenu>
-  //           </Text>
-
-  //           <Line />
-  //         </Grid>
-  //       </Grid>
-  //     </React.Fragment>
-  //   );
-  // }
+  if (is_session) {
+    return (
+      <React.Fragment>
+        <Container1>
+          <Grid padding="2vh 0.8vw" height="90%">
+            <Grid is_flex padding="4px 60px">
+              <Grid>
+                <Text margin="0px" size="24px" bold>
+                  <Menu style={{ border: "1px" }}>
+                    <img
+                      src={logo}
+                      alt="Logo"
+                      style={{
+                        width: "110%",
+                        height: "110%",
+                      }}
+                      onClick={() => {
+                        history.push("/");
+                      }}
+                    />
+                  </Menu>
+                  {/*<a href="#about">*/}
+                  <Menubar style={{ marginLeft: "5em" }}>소개</Menubar>
+                  <Menubar>활동</Menubar>
+                  <Menubar>참여</Menubar>
+                  <Menubar>자료</Menubar>
+                  <Menubar>후원</Menubar>
+                  <Menubar style={{ marginRight: "5em" }}>온센터</Menubar>
+                  <Menubar style={{ border: "none", margin: "1em 3em 0 0" }}>
+                    <OnButton
+                      onClick={() => {
+                        history.push("/write");
+                      }}
+                      style={{ borderRight: "1px solid #FFFFFF" }}
+                    >
+                      포스팅하기
+                    </OnButton>
+                    <OnButton
+                      onClick={() => {
+                        dispatch(useActions.logOutDB());
+                      }}
+                      style={{ marginTop: "-20px" }}
+                    >
+                      로그아웃
+                    </OnButton>
+                  </Menubar>
+                </Text>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Container1>
+      </React.Fragment>
+    );
+  }
   return (
     <>
       <Container>
-        <Grid padding="2vh 10vw" height="100%">
-          <Grid is_flex padding="4px 16px">
+        <Grid padding="2vh 0.8vw" height="90%">
+          <Grid is_flex padding="4px 60px">
             <Grid>
               <Text margin="0px" size="24px" bold>
-                <Menu style={{ border: "none" }}>
+                <Menu style={{ border: "1px" }}>
                   <img
                     src={logo}
                     alt="Logo"
@@ -85,18 +87,19 @@ const Header = (props) => {
                   />
                 </Menu>
                 {/*<a href="#about">*/}
-                <Menu>소개</Menu>
-                <Menu>활동</Menu>
-                <Menu>참여</Menu>
-                <Menu>자료</Menu>
-                <Menu>후원</Menu>
-                <Menu style={{ marginRight: "5em" }}>온센터</Menu>
-                <Menu style={{ border: "none", margin: "0 3em 0 0" }}>
+                <Menubar style={{ marginLeft: "5em" }}>소개</Menubar>
+                <Menubar>활동</Menubar>
+                <Menubar>참여</Menubar>
+                <Menubar>자료</Menubar>
+                <Menubar>후원</Menubar>
+                <Menubar style={{ marginRight: "5em" }}>온센터</Menubar>
+                <Menubar style={{ border: "none", margin: "1em 3em 0 0" }}>
                   <OnButton
                     style={{ borderRight: "1px solid #FFFFFF" }}
                     onClick={() => {
                       history.push("/signup");
                     }}
+                    style={{ borderRight: "1px solid #FFFFFF" }}
                   >
                     회원가입
                   </OnButton>
@@ -107,7 +110,7 @@ const Header = (props) => {
                   >
                     로그인
                   </OnButton>
-                </Menu>
+                </Menubar>
               </Text>
             </Grid>
           </Grid>
@@ -117,10 +120,17 @@ const Header = (props) => {
   );
 };
 
+const Container1 = styled.div`
+  width: 100vw;
+  height: 5%;
+  border-bottom: 1px solid #67bfb2;
+`;
+
 const Container = styled.div`
   width: 100vw;
-  height: 20vh;
-  border-bottom: 1px solid #c4c4c4;
+  height: 5%;
+  border-bottom: 1px solid #67bfb2;
+  //overflow: hidden;
 `;
 
 const OnButton = styled.button`
@@ -132,16 +142,26 @@ const OnButton = styled.button`
   font-size: 15px;
   font-weight: normal;
   cursor: pointer;
+  /* diplay: flex; */
   &:hover {
     opacity: 0.8;
   }
 `;
-const BigMenu = styled.ul`
-  width: 230vh;
-  //border: 1px solid black;
-  height: 5vw;
+
+const Menubar = styled.li`
   float: left;
+  list-style: none;
+  padding-left: 0px
+  width: 30vh;
+  //margin-left: 4em;
+  margin: 1em 3em 0 0;
+  font-size: 0.8em;
+  font-weight: bold;
   color: black;
+  cursor: pointer;
+  &:hover {
+    border-bottom: 2.5px solid #67bfb2;
+  }
 `;
 const Menu = styled.li`
   float: left;

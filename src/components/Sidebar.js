@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Grid } from "../elements";
 import on from "../on.png";
+import sidebar from "../sidebar.png";
 
 const Sidebar = () => {
   return (
@@ -9,7 +10,7 @@ const Sidebar = () => {
       <Grid padding="0 10vw 0 0">
         <Container>
           <PhotoBox style={{ height: "9vw" }}>
-            <img src={on} alt="" style={{ width: "65%", height: "65%" }} />
+            <img src={on} alt="" style={{ width: "65%", height: "55%" }} />
           </PhotoBox>
           <MenuBox>온 세상</MenuBox>
           <MenuBox>온 이야기</MenuBox>
@@ -19,6 +20,7 @@ const Sidebar = () => {
           <MenuBox>입양 후 이야기</MenuBox>
           <MenuBox>봉사활동</MenuBox>
           <MenuBox>온 소개</MenuBox>
+          <img src={sidebar} style={{ width: "100%", height: "150%" }} />
         </Container>
       </Grid>
     </>
@@ -27,7 +29,8 @@ const Sidebar = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: auto;
+  height: 20%;
+  max-width: 220px;
   border-left: 1px solid #efeeee;
   border-right: 1px solid #efeeee;
 `;
@@ -52,9 +55,10 @@ const MenuBox = styled.div`
   border-top: 1px solid #efeeee;
   border-left: 1px solid #efeeee;
   border-right: 2px solid #efeeee;
-  ​ &:hover {
+  &:hover {
     border-left: 3px solid #67bfb2;
     color: #67bfb2;
+    cursor: pointer;
   }
 `;
 
